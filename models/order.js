@@ -4,10 +4,6 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
-    
-    get formattedDate() {
-      return this.date.toISOString().split('T')[0];
-    }
 
     static associate(models) {
       
@@ -17,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Order.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     date: DataTypes.DATE,
     status: DataTypes.STRING,
     totalPrice: DataTypes.INTEGER,

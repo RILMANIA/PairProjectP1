@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
     
-    get formattedPhone() {
+    formattedPhone() {
       if (this.phoneNumber && this.phoneNumber.startsWith('0')) {
         return '+62' + this.phoneNumber.slice(1);
       }
@@ -18,18 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     
   }
   Profile.init({
-    fullName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: { 
-          msg: "Nama lengkap harus diisi!" 
-        },
-        notNull: {
-          msg: "Nama lengkap harus diisi!"
-        }
-      }
-    },
+    fullName: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     address: DataTypes.STRING,
     UserId: DataTypes.INTEGER
